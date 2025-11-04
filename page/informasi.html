@@ -12,7 +12,7 @@
 
 <body>
     <nav>
-        <img class="logo" src="../assets/LOGO.png" alt="Logo FILKOMreserV" onclick="location.reload();" />
+        <img class="logo" src="../assets/LOGO.png" alt="Logo FILKOMreserV" onclick="window.location.href='../index.html'" style="cursor: pointer;" />
         <ul class="nav__links">
             <li class="link"><a href="../index.html">Beranda</a></li>
             <li class="link"><a href="../index.html#booklet">Buku Panduan</a></li>
@@ -22,7 +22,7 @@
                     <i class="ri-notification-3-line" style="font-size: 1.5rem; margin-right: 5px"></i> Notifikasi
                 </a>
             </li>
-            <button class="btn" style="color: var(--white); background-color: var(--primary-color)" onclick="window.location.href='login.html'">
+            <button id="authButton" class="btn" style="color: var(--white); background-color: var(--primary-color)">
                 Login
             </button>
         </ul>
@@ -31,10 +31,8 @@
     <main class="section__container">
         <div class="informasi__ruangan">
             <h1>Informasi Ruangan</h1>
-            <!-- Foto Ruangan -->
             <img id="ruangan-image" src="../../assets/adver.webp" alt="Foto Ruangan" class="ruangan__image" />
             <div class="ruangan__detail">
-                <!-- Nama Ruangan -->
                 <h2 id="ruangan-name">Loading...</h2>
                 <p>
                     <strong>Kapasitas:</strong>
@@ -42,12 +40,10 @@
                 </p>
                 <p><strong>Fasilitas:</strong></p>
                 <ul id="ruangan-facilities">
-                    <!-- Fasilitas akan dimuat di sini -->
-                </ul>
+                    </ul>
                 <p><strong>Riwayat Penggunaan:</strong></p>
                 <ul id="ruangan-usage-history">
-                    <!-- Riwayat penggunaan akan dimuat di sini -->
-                </ul>
+                    </ul>
             </div>
         </div>
     </main>
@@ -83,27 +79,6 @@
     </footer>
 
     <script>
-        window.onload = function() {
-            const authButton = document.getElementById("authButton");
-
-            // Periksa keberadaan cookie Authorization
-            if (document.cookie.includes("Authorization")) {
-                authButton.textContent = "Logout"; // Ubah teks menjadi Logout
-                authButton.onclick = function() {
-                    // Hapus cookie Authorization untuk logout
-                    document.cookie =
-                        "Authorization=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
-                    alert("Anda telah berhasil logout.");
-                    window.location.href = "../index.html"; // Arahkan ke halaman utama
-                };
-            } else {
-                authButton.textContent = "Login"; // Tetap Login
-                authButton.onclick = function() {
-                    window.location.href = "login.html"; // Arahkan ke halaman login
-                };
-            }
-        };
-
         // Fungsi untuk membaca parameter dari URL
         function getQueryParam(param) {
             const urlParams = new URLSearchParams(window.location.search);
@@ -136,7 +111,7 @@
 
                 // Fetch data dari API menggunakan ID ruangan dan token Authorization
                 const response = await fetch(
-                    `https://beaps-treamyracles-projects.vercel.app/rooms/${roomId}`, {
+                    `https://beaps.vercel.app/rooms/${roomId}`, {
                         method: "GET",
                         headers: {
                             "Content-Type": "application/json",
@@ -186,8 +161,31 @@
             }
         }
 
-        // Panggil fungsi untuk mengambil data ketika halaman dimuat
-        window.onload = getRoomInfo;
+        // Menggabungkan kedua fungsi window.onload yang sebelumnya terpisah
+        window.onload = function() {
+            // Setup Tombol Auth
+            const authButton = document.getElementById("authButton");
+
+            // Periksa keberadaan cookie Authorization
+            if (document.cookie.includes("Authorization")) {
+                authButton.textContent = "Logout"; // Ubah teks menjadi Logout
+                authButton.onclick = function() {
+                    // Hapus cookie Authorization untuk logout
+                    document.cookie =
+                        "Authorization=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
+                    alert("Anda telah berhasil logout.");
+                    window.location.href = "../index.html"; // Arahkan ke halaman utama
+                };
+            } else {
+                authButton.textContent = "Login"; // Tetap Login
+                authButton.onclick = function() {
+                    window.location.href = "login.html"; // Arahkan ke halaman login
+                };
+            }
+
+            // Panggil fungsi untuk mengambil data ruangan
+            getRoomInfo();
+        };
     </script>
 </body>
 

@@ -1,4 +1,4 @@
-# Sistem Reservasi Ruangan Terintegrasi - FILKOM UB
+# Sistem Reservasi Ruangan Terintegrasi - FILKOM UB 
 
 Solusi modern untuk mempermudah proses peminjaman dan manajemen ruangan di lingkungan Fakultas Ilmu Komputer, Universitas Brawijaya.
 
