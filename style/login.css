@@ -1,12 +1,24 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap");
 :root {
-    --primary-color: #2c3855;
-    --primary-color-dark: #435681;
-    --text-dark: #333333;
-    --text-light: #767268;
-    --extra-light: #f3f4f6;
+    --primary-color: #0F172A;
+    --primary-color-dark: #1E293B;
+    --primary-color-light: #334155;
+    --accent-color: #3B82F6;
+    --accent-color-hover: #2563EB;
+    --text-dark: #0F172A;
+    --text-light: #475569;
+    --text-muted: #94A3B8;
+    --background-light: #F8FAFC;
+    --extra-light: #F1F5F9;
     --white: #ffffff;
     --max-width: 1200px;
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    --radius-md: 0.5rem;
+    --radius-lg: 1rem;
+    --radius-xl: 1.5rem;
+    --radius-2xl: 2rem;
 }
 
 body {
@@ -150,7 +162,7 @@ nav {
     width: 100%;
     max-width: 400px;
     padding: 1rem;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: var(--shadow-md);
     border-radius: 8px;
     background: #ffffff;
 }
@@ -198,7 +210,7 @@ input[type="password"] {
 input:focus {
     outline: none;
     border-color: #2c3855;
-    box-shadow: 0 0 4px rgba(44, 56, 85, 0.4);
+    box-shadow: var(--shadow-md);
 }
 
 .btn {
